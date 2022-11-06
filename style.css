@@ -1,0 +1,23 @@
+
+.Heading 
+{
+    width: 100%;
+    text-align: left;
+}
+
+.Heading h3 
+{
+    display: inline;
+}
+
+.Heading button
+{
+    float: right;
+    border: 3px solid ghostwhite;
+    border-radius: 3px;
+}
+
+#start, #status
+{
+    font-size: 22px;
+}
