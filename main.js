@@ -1,5 +1,9 @@
 
 /*created by Moksh Meena */
+rightWristX = 0;
+rightWristY = 0;
+scoreRightWrist = 0;
+
 
 var paddle2 =10,paddle1=10;
 
@@ -40,7 +44,26 @@ function modelLoaded()
   console.log("modelLoaded");
 }
 
-function draw(){
+function gotPoses(results)
+{
+  console.log(results);
+  if(results.length > 0)
+  {
+    rightWristX = results[0].pose.rightWrist.x;
+    rightWristY = results[0].pose.rightWrist.y;
+    scoreRightWrist = results[0].pose.keypoints[10].score;
+  }
+}
+
+function draw()
+{
+
+if (scoreRightWrist > 0.2)
+{
+  fill("red");
+  stroke("red");
+  circle(rightWristX, rightWristY, 30);
+}
 
  background(0); 
 
