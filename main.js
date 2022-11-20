@@ -25,10 +25,10 @@ var ball = {
     dy:3
 }
 
-function preLoad()
+function preload()
 {
-  btp = loadSound("ball_touch_paddle.wav");
-  miss = loadSound("missed.wav");
+  btp = loadSound("ball_touch_paddel.wav");
+  missed = loadSound("missed.wav");
 }
 
 function setup()
@@ -40,8 +40,8 @@ function setup()
   video.size(650, 550);
   video.hide();
 
-  posenet = ml5.poseNet(video, modelLoaded);
-  posenet.on('pose', gotPoses);
+  poseNet = ml5.poseNet(video, modelLoaded);
+  poseNet.on('pose', gotPoses);
 
 }
 
@@ -69,20 +69,12 @@ function startGame()
 
 function draw()
 {
-
-
-
-if (scoreRightWrist > 0.2)
-{
-  fill("red");
-  stroke("red");
-  circle(rightWristX, rightWristY, 30);
-}
-
 if (game_status == "start")
 {
  background(0); 
 
+ image(video, 0, 0, 700, 600);
+ 
  fill("black");
  stroke("black");
  rect(680,0,20,700);
@@ -91,6 +83,13 @@ if (game_status == "start")
  stroke("black");
  rect(0,0,20,700);
  
+ if (scoreRightWrist > 0.2)
+ {
+   fill("red");
+   stroke("red");
+   circle(rightWristX, rightWristY, 30);
+ }
+
    //funtion paddleInCanvas call 
    paddleInCanvas();
  
@@ -179,7 +178,7 @@ function move(){
     pcscore++;
     reset();
     navigator.vibrate(100);
-    miss.play();
+    missed.play();
   }
 }
 if(pcscore ==4){
